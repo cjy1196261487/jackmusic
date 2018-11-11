@@ -1,35 +1,33 @@
-package com.cjy.jackmusic;
+package com.cjy.jackmusic.activity;
 
-import android.arch.lifecycle.ViewModelProvider;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuWrapperFactory;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListAdapter;
 import android.widget.RadioButton;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import com.cjy.jackmusic.R;
+
+import com.cjy.jackmusic.adapter.RankAdapter;
 import com.cjy.jackmusic.utils.MusicRank;
 import com.cjy.jackmusic.utils.OkHttpUtil;
 import com.cjy.jackmusic.utils.RadioUtil;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
+import com.cjy.jackmusic.adapter.RadioAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioUtil radioUtil;
     private List<MusicRank.ResultBean>resultBeans;
     private List<RadioUtil.ChannellistBean>channellistBeans;
+    private TextView tosearch;
 
 
 
@@ -52,11 +51,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Fresco.initialize(this);
         setContentView(R.layout.activity_main);
         initView();
         requestRanks(musicrankurl);
         requestRadio(musicradiourl);
+        initlisten();
+    }
+
+    private void initlisten() {
+        tosearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,MusicActivity.class);
+                startActivity(intent);
+            }
+        });
+        Leaderboard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("hello",resultBeans.get(i).getName());
+            }
+        });
+        radiolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e( "onItemClick: ",channellistBeans.get(i).getCh_name() );
+            }
+        });
     }
 
     private void requestRadio(String musicradiourl) {
@@ -117,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                   runOnUiThread(new Runnable() {
                       @Override
                       public void run() {
-                          Myadapter myadapter=new Myadapter(MainActivity.this,resultBeans);
+                          RankAdapter myadapter=new RankAdapter(MainActivity.this,resultBeans);
                           Leaderboard.setAdapter(myadapter);
                           myadapter.notifyDataSetChanged();
                       }
@@ -137,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         heartmusic=findViewById(R.id.collection_music);
         downloadmusic=findViewById(R.id.download_music);
         playhistory=findViewById(R.id.music_history);
+        tosearch=findViewById(R.id.click_tosearch);
 
 
     }

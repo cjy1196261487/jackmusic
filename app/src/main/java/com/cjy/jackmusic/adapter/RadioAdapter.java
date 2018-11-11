@@ -1,4 +1,4 @@
-package com.cjy.jackmusic;
+package com.cjy.jackmusic.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.cjy.jackmusic.activity.MainActivity;
+import com.cjy.jackmusic.R;
 import com.cjy.jackmusic.utils.RadioUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
-class RadioAdapter extends BaseAdapter{
+public class RadioAdapter extends BaseAdapter{
     private Context context;
     private List<RadioUtil.ChannellistBean>channellist;
 

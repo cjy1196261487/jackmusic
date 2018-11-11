@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:orientation="vertical">
     <LinearLayout
         android:orientation="vertical"
@@ -65,9 +65,7 @@
         android:textAlignment="center"
         android:text="点击搜索歌曲"/>
         <!--歌曲排行榜-->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -83,13 +81,13 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
         <TextView
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:text="----歌单列表-----"
             android:layout_height="wrap_content"
             android:textAlignment="center"/>
         <GridView
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/radiolist"
             android:layout_width="wrap_content"
             android:numColumns="3"
@@ -99,7 +97,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
             </LinearLayout>
-        </ScrollView>
+
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
