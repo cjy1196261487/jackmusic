@@ -1,4 +1,4 @@
-package com.cjy.jackmusic;
+package com.cjy.jackmusic.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,17 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.cjy.jackmusic.R;
 import com.cjy.jackmusic.utils.MusicRank;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
-class Myadapter extends BaseAdapter{
+public class RankAdapter extends BaseAdapter{
     private Context context;
     private List<MusicRank.ResultBean> resultBeans;
 
 
-    public Myadapter(Context context,  List<MusicRank.ResultBean> result) {
+    public RankAdapter(Context context,  List<MusicRank.ResultBean> result) {
         this.context=context;
         resultBeans=result;
     }
