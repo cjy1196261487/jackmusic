@@ -65,19 +65,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this,MusicActivity.class);
+                intent.putExtra("name","0");
                 startActivity(intent);
             }
         });
         Leaderboard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("hello",resultBeans.get(i).getName());
+                Log.e("TAG",resultBeans.get(i).getName()+"  type="+resultBeans.get(i).getType());
+                Intent intent=new Intent(MainActivity.this,MusicActivity.class);
+                intent.putExtra("type",resultBeans.get(i).getType());
+                intent.putExtra("name","2");
+                startActivity(intent);
+
+
             }
         });
         radiolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.e( "onItemClick: ",channellistBeans.get(i).getCh_name() );
+                Intent intent=new Intent(MainActivity.this,MusicActivity.class);
+                intent.putExtra("radioanme",channellistBeans.get(i).getCh_name());
+                intent.putExtra("name","3");
+                startActivity(intent);
             }
         });
     }

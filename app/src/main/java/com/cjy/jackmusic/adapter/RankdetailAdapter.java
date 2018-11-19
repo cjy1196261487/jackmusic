@@ -8,23 +8,20 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.cjy.jackmusic.R;
-import com.cjy.jackmusic.activity.MusicActivity;
 import com.cjy.jackmusic.utils.RankUtil;
 import com.cjy.jackmusic.utils.SearchUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.IdentityHashMap;
 import java.util.List;
 
-public class MusicAdapter extends BaseAdapter{
+public class RankdetailAdapter extends BaseAdapter{
     private Context context;
-    private List<SearchUtil.ResultBean>resultBeans;
+    private List<RankUtil.ResultBean>resultBeans;
 
-    public MusicAdapter(Context context, List<SearchUtil.ResultBean> searchUtilList) {
+    public RankdetailAdapter(Context context, List<RankUtil.ResultBean> rankUtilList) {
         this.context=context;
-        resultBeans=searchUtilList;
+        resultBeans=rankUtilList;
     }
-
 
     @Override
     public int getCount() {
@@ -47,7 +44,7 @@ public class MusicAdapter extends BaseAdapter{
         SimpleDraweeView simpleDraweeView=view.findViewById(R.id.musiclist_pic);
         TextView songname=view.findViewById(R.id.songname);
         TextView singname=view.findViewById(R.id.sing_name);
-        simpleDraweeView.setImageURI(resultBeans.get(i).getPic());
+        simpleDraweeView.setImageURI(resultBeans.get(i).getAlbum_500_500());
         songname.setText(resultBeans.get(i).getTitle());
 
         if (resultBeans.get(i).getAuthor().length()>20){

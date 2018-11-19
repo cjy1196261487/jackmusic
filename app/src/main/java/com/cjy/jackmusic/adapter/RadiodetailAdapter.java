@@ -8,23 +8,20 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.cjy.jackmusic.R;
-import com.cjy.jackmusic.activity.MusicActivity;
+import com.cjy.jackmusic.utils.RadioDetail;
 import com.cjy.jackmusic.utils.RankUtil;
-import com.cjy.jackmusic.utils.SearchUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.IdentityHashMap;
 import java.util.List;
 
-public class MusicAdapter extends BaseAdapter{
+public class RadiodetailAdapter extends BaseAdapter{
     private Context context;
-    private List<SearchUtil.ResultBean>resultBeans;
+    private List<RadioDetail.ResultBean.SonglistBean>resultBeans;
 
-    public MusicAdapter(Context context, List<SearchUtil.ResultBean> searchUtilList) {
+    public RadiodetailAdapter(Context context, List<RadioDetail.ResultBean.SonglistBean> rankUtilList) {
         this.context=context;
-        resultBeans=searchUtilList;
+        resultBeans=rankUtilList;
     }
-
 
     @Override
     public int getCount() {
@@ -47,14 +44,13 @@ public class MusicAdapter extends BaseAdapter{
         SimpleDraweeView simpleDraweeView=view.findViewById(R.id.musiclist_pic);
         TextView songname=view.findViewById(R.id.songname);
         TextView singname=view.findViewById(R.id.sing_name);
-        simpleDraweeView.setImageURI(resultBeans.get(i).getPic());
+        simpleDraweeView.setImageURI(resultBeans.get(i).getThumb());
         songname.setText(resultBeans.get(i).getTitle());
 
-        if (resultBeans.get(i).getAuthor().length()>20){
-            singname.setText(resultBeans.get(i).getAuthor().substring(0,9)+".....");
-        }else {
-            singname.setText(resultBeans.get(i).getAuthor());
-        }
+
+
+            singname.setText(resultBeans.get(i).getArtist());
+
 
 
 
