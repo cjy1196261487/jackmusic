@@ -8,7 +8,7 @@ http://api.apiopen.top/musicBroadcasting
 http://api.apiopen.top/musicBroadcastingDetails?channelname=public_tuijian_spring
 
 音乐详情接口：
-http://api.apiopen.top/musicDetails?id=604392760
+http://api.apiopen.top/musicDetails?id=537254
 
 音乐排行榜接口：
 http://api.apiopen.top/musicRankings

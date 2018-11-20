@@ -8,7 +8,9 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/colorPrimary"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <ImageView
             android:id="@+id/backbutton"
             android:layout_alignParentLeft="true"
@@ -22,7 +24,6 @@
             android:background="@drawable/textview"
             android:layout_centerInParent="true"
             android:layout_width="250dp"
-
             android:layout_height="wrap_content"
             android:hint="歌曲,歌手名"/>
 

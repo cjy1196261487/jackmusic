@@ -84,7 +84,8 @@ public class MusicActivity extends AppCompatActivity {
             });
 
        }else if (intent.getStringExtra("name").equals("3")){
-           String url="https://api.apiopen.top/musicBroadcastingDetails?channelname="+intent.getStringExtra("radioanme");
+           String url="http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getChannelSong&format=json&pn=0&rn=10&channelname="+intent.getStringExtra("radioanme");
+            Log.e("_+++++_url",url);
            OkHttpUtil.sendOkhttpResquest(url, new Callback() {
                @Override
                public void onFailure(Call call, IOException e) {
@@ -94,9 +95,10 @@ public class MusicActivity extends AppCompatActivity {
                @Override
                public void onResponse(Call call, Response response) throws IOException {
                    String re=response.body().string();
+                   Log.e("_+++++_",re);
                    radioDetail=new Gson().fromJson(re,RadioDetail.class);
                    radiodetaillist=radioDetail.getResult().getSonglist();
-                   if (radioDetail.getCode()==200){
+                   if (radioDetail.getError_code()==22000){
                        runOnUiThread(new Runnable() {
                            @Override
                            public void run() {
@@ -162,9 +164,13 @@ public class MusicActivity extends AppCompatActivity {
                 });
             }
         });
-//        searchlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        searchlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Intent intent=new Intent(MusicActivity.this,PlayActivity.class);
+                intent.putExtra("url",radiodetaillist.get(i).getThumb());
+                startActivity(intent);
 //                MediaPlayer mediaPlayer=new MediaPlayer();
 //                try {
 //                    mediaPlayer.reset();
@@ -176,8 +182,8 @@ public class MusicActivity extends AppCompatActivity {
 //                } catch (IOException e) {
 //                    e.printStackTrace();
 //                }
-//            }
-//        });
+            }
+       });
   }
 
 

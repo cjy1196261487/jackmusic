@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MusicActivity" />
+        <activity android:name=".activity.PlayActivity"/>
     </application>
 
 </manifest>
