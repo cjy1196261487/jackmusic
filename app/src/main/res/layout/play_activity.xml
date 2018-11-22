@@ -2,11 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:fresco="http://schemas.android.com/apk/res-auto">
     <com.facebook.drawee.view.SimpleDraweeView
+
         android:id="@+id/music_pic"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        fresco:roundAsCircle="true"/>
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderWidth="10dp"
+        fresco:roundingBorderColor="@color/colorPrimary"
+        />
+    <TextView
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="停止"
+        android:layout_marginTop="200dp"/>
 
 </LinearLayout>
