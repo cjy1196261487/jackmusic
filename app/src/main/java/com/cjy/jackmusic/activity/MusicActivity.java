@@ -25,6 +25,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class MusicActivity extends AppCompatActivity {
     private RadioDetail radioDetail;
     private List<RankUtil.ResultBean>rankutilList;
    private List<RadioDetail.ResultBean.SonglistBean>radiodetaillist;
-   private List<SearchUtil.ResultBean>searchUtilList;
+   private ArrayList<SearchUtil.ResultBean>searchUtilList;
    private int type;
+   private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +53,11 @@ public class MusicActivity extends AppCompatActivity {
         setContentView(R.layout.musiclist_layout);
         Intent intent=getIntent();
         type= intent.getIntExtra("type",0);
+        name=intent.getStringExtra("name");
         Log.e("tpye is",""+type);
-        if (intent.getStringExtra("name").equals("0")){
+        if (name.equals("0")){
 
-        }else if (intent.getStringExtra("name").equals("2")){
+        }else if (name.equals("2")){
             String url="http://api.apiopen.top/musicRankingsDetails?type="+type;
             OkHttpUtil.sendOkhttpResquest(url, new Callback() {
                 @Override
@@ -83,8 +86,8 @@ public class MusicActivity extends AppCompatActivity {
                 }
             });
 
-       }else if (intent.getStringExtra("name").equals("3")){
-           String url="http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getChannelSong&format=json&pn=0&rn=10&channelname="+intent.getStringExtra("radioanme");
+       }else if (name.equals("3")){
+           String url="http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getChannelSong&format=json&pn=0&rn=20&channelname="+intent.getStringExtra("radioanme");
             Log.e("_+++++_url",url);
            OkHttpUtil.sendOkhttpResquest(url, new Callback() {
                @Override
@@ -167,21 +170,38 @@ public class MusicActivity extends AppCompatActivity {
         searchlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Intent intent=new Intent(MusicActivity.this,PlayActivity.class);
-                intent.putExtra("url",radiodetaillist.get(i).getThumb());
+                if (name.equals("2")){
+                    intent.putExtra("songs_id",rankutilList.get(i).getSong_id());
+                }else if (name.equals("3")){
+                    intent.putExtra("songs_id",radiodetaillist.get(i).getSongid());
+                }else if (name.equals("0")){
+                    intent.putExtra("songsarry",searchUtilList.get(i));
+                }
                 startActivity(intent);
-//                MediaPlayer mediaPlayer=new MediaPlayer();
-//                try {
-//                    mediaPlayer.reset();
-//                    mediaPlayer.setDataSource(searchUtilList.get(i).getUrl());
-//                    mediaPlayer.prepare();
-//                    mediaPlayer.start();
-//                    Log.e("歌曲时长",mediaPlayer.getDuration()+"");
+
+
+
+
+//                        MediaPlayer mediaPlayer=null;
+//                        mediaPlayer=new MediaPlayer();
+//                        try {
+//                            mediaPlayer.reset();
+//                            mediaPlayer.setDataSource("http://zhangmenshiting.qianqian.com/data2/music/4569de4b5c9c90f99b8d04c6e74fd433/596995258/596995258.mp3?xcode=01f7d66077515486180b9e6dd2675aac");
+//                            mediaPlayer.prepare();
+//                            mediaPlayer.start();
+//                            Log.e("歌曲时长",mediaPlayer.getDuration()+"");
 //
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+
+
+
+//                Intent intent=new Intent(MusicActivity.this,PlayActivity.class);
+//                intent.putExtra("url",radiodetaillist.get(i).getThumb());
+//                startActivity(intent);
+
             }
        });
   }

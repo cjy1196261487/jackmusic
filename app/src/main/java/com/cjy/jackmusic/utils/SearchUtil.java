@@ -1,5 +1,7 @@
 package com.cjy.jackmusic.utils;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchUtil {
@@ -13,7 +15,7 @@ public class SearchUtil {
 
     private int code;
     private String message;
-    private List<ResultBean> result;
+    private ArrayList<ResultBean> result;
 
     public int getCode() {
         return code;
@@ -31,15 +33,29 @@ public class SearchUtil {
         this.message = message;
     }
 
-    public List<ResultBean> getResult() {
+    public ArrayList<ResultBean> getResult() {
         return result;
     }
 
-    public void setResult(List<ResultBean> result) {
+    public void setResult(ArrayList<ResultBean> result) {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable {
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "author='" + author + '\'' +
+                    ", link='" + link + '\'' +
+                    ", pic='" + pic + '\'' +
+                    ", type='" + type + '\'' +
+                    ", title='" + title + '\'' +
+                    ", lrc='" + lrc + '\'' +
+                    ", songid=" + songid +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         /**
          * author : 玄觞
          * link : http://music.163.com/#/song?id=497527639

@@ -16,3 +16,5 @@ http://api.apiopen.top/musicRankings
 音乐排行榜详情接口：
 http://api.apiopen.top/musicRankingsDetails?type=1
 
+根据音乐id 获取音乐播放
+http://tingapi.ting.baidu.com/v1/restserver/ting?from=&version=2.1.0&method=baidu.ting.song.play&format=json&songid=121353608

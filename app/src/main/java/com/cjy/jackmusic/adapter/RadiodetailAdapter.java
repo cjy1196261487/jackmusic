@@ -25,7 +25,7 @@ public class RadiodetailAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return resultBeans.size();
+        return resultBeans.size()-1;
     }
 
     @Override
@@ -46,10 +46,7 @@ public class RadiodetailAdapter extends BaseAdapter{
         TextView singname=view.findViewById(R.id.sing_name);
         simpleDraweeView.setImageURI(resultBeans.get(i).getThumb());
         songname.setText(resultBeans.get(i).getTitle());
-
-
-
-            singname.setText(resultBeans.get(i).getArtist());
+        singname.setText(resultBeans.get(i).getArtist());
 
 
 
