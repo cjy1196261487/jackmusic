@@ -21,31 +21,39 @@ import java.util.List;
 public class PlayActivity extends AppCompatActivity{
    private SearchUtil.ResultBean searchresult;
     private  SimpleDraweeView simpleDraweeView;
+    private  Animation animation;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_activity);
-        TextView stop=findViewById(R.id.stop);
-
         Intent intent=getIntent();
         Log.e("123",intent.getSerializableExtra("songsarry").toString());
         searchresult=(SearchUtil.ResultBean)intent.getSerializableExtra("songsarry");
-         simpleDraweeView=findViewById(R.id.music_pic);
-        simpleDraweeView.setImageURI(searchresult.getPic());
-        /*实现动画的旋转*/        Animation animation= AnimationUtils.loadAnimation(this,R.anim.image_animaltion);
+        initView();
+        TextView stop=findViewById(R.id.stop);
+
+
+
+
+        animation= AnimationUtils.loadAnimation(this,R.anim.image_animaltion);
         LinearInterpolator linearInterpolator=new LinearInterpolator();//设置动画匀速运动
         animation.setInterpolator(linearInterpolator);
-        simpleDraweeView.startAnimation(animation);
+
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                simpleDraweeView.clearAnimation();
+                simpleDraweeView.startAnimation(animation);
             }
         });
 
 
 
 
+    }
+
+    private void initView() {
+        simpleDraweeView=findViewById(R.id.music_pic);
+        simpleDraweeView.setImageURI(searchresult.getPic());
     }
 }

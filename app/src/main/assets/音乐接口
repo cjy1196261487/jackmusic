@@ -1,5 +1,6 @@
 音乐搜索接口：
-http://api.apiopen.top/searchMusic?name=不要说话
+//    http://api.apiopen.top/searchMusic?name=不要说话
+https://api.bzqll.com/music/netease/search?key=579621905&s=让酒&type=song&limit=100&offset=0
 
 音乐电台接口：
 http://api.apiopen.top/musicBroadcasting
@@ -18,3 +19,4 @@ http://api.apiopen.top/musicRankingsDetails?type=1
 
 根据音乐id 获取音乐播放
 http://tingapi.ting.baidu.com/v1/restserver/ting?from=&version=2.1.0&method=baidu.ting.song.play&format=json&songid=121353608
+
